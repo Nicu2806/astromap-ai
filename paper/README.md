@@ -46,4 +46,4 @@ This generates `manuscript.pdf`.
 - **Candidate Diagnostic Report:** `artifacts/tic-200668668-candidate-report.html`
 - **Unvetted Discovery Batch Catalog:** `artifacts/discovery_unvetted_batch1.csv`
 - **Permanent Open Science DOI:** `10.5281/zenodo.14889211`
-- **Source Code Repository:** [https://github.com/Nicu2806/astromap-ai](https://github.com/Nicu2806/astromap-ai)
+- **Source Code Repository:** [https://github.com/nicudrumea/astromap-ai](https://github.com/nicudrumea/astromap-ai)

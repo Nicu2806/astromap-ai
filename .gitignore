@@ -4,29 +4,27 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.py[cod]
-*$py.class
 *.egg-info/
-dist/
-build/
 
 # Rust
-target/
 apps/api-rust/target/
 
 # Flutter
-.dart_tool/
 apps/client-flutter/.dart_tool/
 apps/client-flutter/build/
 apps/client-flutter/.flutter-plugins*
-apps/client-flutter/.flutter-plugins-dependencies
 
-# Heavy raw astronomical files
+# Scientific data and artifacts
 data/raw/
+data/processed/
+artifacts/
 *.fits
+*.pt
+*.npz
+*.parquet
 
-# Local configuration & IDE
+# Local configuration
 .env
 .vscode/
-.idea/
 .DS_Store
 Thumbs.db

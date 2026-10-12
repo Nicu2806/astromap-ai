@@ -2,10 +2,12 @@ cff-version: 1.2.0
 message: "If you use this software in your research or wish to cite it, please cite it using the metadata below."
 title: "AstroMap-AI: Physics-Informed Interactive Exoplanet Detection and Astrophysical Vetting System"
 version: 1.0.0
-date-released: 2026-10-09
+date-released: 2026-10-12
 authors:
   - family-names: "Drumea"
     given-names: "Nicu"
+    email: "nicu.drumea@iis.utm.md"
+    affiliation: "Faculty of Computers, Informatics and Microelectronics, Technical University of Moldova"
 repository-code: "https://github.com/Nicu2806/astromap-ai"
 url: "https://github.com/Nicu2806/astromap-ai"
 license: MIT
