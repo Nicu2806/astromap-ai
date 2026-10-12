@@ -1,5 +1,6 @@
 # AstroMap-AI: Physics-Informed Deep Learning for Exoplanet Transit Detection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23317448.svg)](https://doi.org/10.5281/zenodo.23317448)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](python/)
 [![Rust 1.75+](https://img.shields.io/badge/Rust-1.75+-orange.svg)](apps/api-rust/)
@@ -11,6 +12,7 @@
 > **Master's Program:** Computers and Networks (*Calculatoare și Rețele*)  
 > **Email:** [nicu.drumea@iis.utm.md](mailto:nicu.drumea@iis.utm.md)  
 > **Repository:** [https://github.com/Nicu2806/astromap-ai](https://github.com/Nicu2806/astromap-ai)  
+> **Permanent DOI:** [10.5281/zenodo.23317448](https://doi.org/10.5281/zenodo.23317448)  
 
 ---
 
@@ -49,7 +51,7 @@ astromap-ai/
 ├── apps/
 │   ├── api-rust/            # High-Performance Public Gateway (Axum :8080, Tokio async)
 │   └── client-flutter/      # Interactive Scientific Workbench (Flutter :8088 Web & Desktop)
-├── paper/                   # Complete LaTeX Publication Package (manuscript.tex, references.bib)
+├── paper/                   # Complete LaTeX Publication Package (main.tex, references.bib)
 ├── artifacts/               # Immutable Scientific Artifacts (pinn-transnet-v1.pt, diagnostic reports)
 ├── data/                    # TESS Sector 1 Manifest (real_manifest.json) & cached .npz curves
 ├── docs/                    # Complete 13-module documentation package
@@ -88,9 +90,9 @@ Push-Location apps/client-flutter ; flutter test ; Pop-Location
 
 ## 📄 Academic Publication Package
 
-The repository includes the full publication manuscript ready for submission to *The Astrophysical Journal* (ApJ) or *Monthly Notices of the Royal Astronomical Society* (MNRAS):
+The repository includes the full publication manuscript ready for submission to *The Astrophysical Journal* (ApJ), *Monthly Notices of the Royal Astronomical Society* (MNRAS), or *arXiv* (astro-ph.EP):
 
-- [`paper/main.tex`](paper/main.tex) / [`paper/manuscript.tex`](paper/manuscript.tex): Self-contained LaTeX document with `tabularx` tables, `natbib` citations, and mathematical derivations.
+- [`paper/main.tex`](paper/main.tex) / [`paper/manuscript.tex`](paper/manuscript.tex): Publication-ready LaTeX document with `tabularx` tables, `natbib` citations, and mathematical derivations.
 - [`paper/references.bib`](paper/references.bib): Complete BibTeX database.
 - [`artifacts/tic-200668668-candidate-report.html`](artifacts/tic-200668668-candidate-report.html): Diagnostic photometric report containing phase-folded transit profile across 18,277 cadences.
 
@@ -106,7 +108,8 @@ If you use AstroMap-AI in your research or thesis, please cite:
   title        = {{AstroMap-AI: Physics-Informed Deep Learning Architecture for Exoplanet Transit Detection}},
   year         = {2026},
   publisher    = {Zenodo},
-  url          = {https://github.com/Nicu2806/astromap-ai}
+  doi          = {10.5281/zenodo.23317448},
+  url          = {https://doi.org/10.5281/zenodo.23317448}
 }
 ```
 

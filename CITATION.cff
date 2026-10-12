@@ -3,13 +3,14 @@ message: "If you use this software in your research or wish to cite it, please c
 title: "AstroMap-AI: Physics-Informed Interactive Exoplanet Detection and Astrophysical Vetting System"
 version: 1.0.0
 date-released: 2026-10-12
+doi: "10.5281/zenodo.23317448"
 authors:
   - family-names: "Drumea"
     given-names: "Nicu"
     email: "nicu.drumea@iis.utm.md"
     affiliation: "Faculty of Computers, Informatics and Microelectronics, Technical University of Moldova"
 repository-code: "https://github.com/Nicu2806/astromap-ai"
-url: "https://github.com/Nicu2806/astromap-ai"
+url: "https://doi.org/10.5281/zenodo.23317448"
 license: MIT
 keywords:
   - "exoplanets"

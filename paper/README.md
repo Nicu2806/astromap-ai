@@ -45,5 +45,5 @@ This generates `manuscript.pdf`.
 - **Calibrated Model Checkpoint:** `artifacts/pinn-transnet-v1.pt`
 - **Candidate Diagnostic Report:** `artifacts/tic-200668668-candidate-report.html`
 - **Unvetted Discovery Batch Catalog:** `artifacts/discovery_unvetted_batch1.csv`
-- **Permanent Open Science DOI:** `10.5281/zenodo.14889211`
-- **Source Code Repository:** [https://github.com/nicudrumea/astromap-ai](https://github.com/nicudrumea/astromap-ai)
+- **Permanent Open Science DOI:** [10.5281/zenodo.23317448](https://doi.org/10.5281/zenodo.23317448)
+- **Source Code Repository:** [https://github.com/Nicu2806/astromap-ai](https://github.com/Nicu2806/astromap-ai)

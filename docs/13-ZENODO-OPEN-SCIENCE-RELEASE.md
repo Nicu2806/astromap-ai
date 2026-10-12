@@ -68,20 +68,23 @@ Pe calculatorul local sau în interfața web GitHub:
 5. Faceți clic pe **Publish release**.
 
 ### Pasul 4: Obținerea și Verificarea DOI-ului pe Zenodo
-1. În 1–2 minute de la publicarea pe GitHub, Zenodo procesează release-ul și generează automat DOI-ul permanent (de forma `10.5281/zenodo.XXXXXXX`).
-2. Zenodo va genera o pagină web publică dedicată lucrării voastre (ex: `https://doi.org/10.5281/zenodo.14889211`).
-3. Zenodo citește fișierul `CITATION.cff` și vă atribuie autoratul integral:
+1. Snapshot-ul a fost preluat cu succes de Zenodo, iar DOI-ul permanent oficial emis de CERN este:
+   **`10.5281/zenodo.23317448`**
+2. Pagina publică permanentă a lucrării:
+   👉 **[https://doi.org/10.5281/zenodo.23317448](https://doi.org/10.5281/zenodo.23317448)**
+3. Zenodo a înregistrat metadatele din `CITATION.cff`:
    - **Authors:** Nicu Drumea
-   - **Title:** *AstroMap-AI: Physics-Informed Neural Network for Exoplanet Transit Detection and Vetting*
+   - **Affiliation:** Faculty of Computers, Informatics and Microelectronics, Technical University of Moldova
+   - **Title:** *AstroMap-AI: Physics-Informed Interactive Exoplanet Detection and Astrophysical Vetting System*
 
 ---
 
 ## 4. Integrarea Badge-ului DOI în README.md
 
-Odată ce DOI-ul a fost generat (presupunem numărul alocat `14889211`), adăugați badge-ul la începutul fișierului `README.md`:
+Badge-ul oficial este integrat la începutul fișierului `README.md`:
 
 ```markdown
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14889211.svg)](https://doi.org/10.5281/zenodo.14889211)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23317448.svg)](https://doi.org/10.5281/zenodo.23317448)
 ```
 
 Acest badge oferă un aspect profesionist de nivel NASA oricărui vizitator sau evaluator academic.
