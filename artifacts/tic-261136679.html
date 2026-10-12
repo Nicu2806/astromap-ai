@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>TIC 261136679 - AstroMap-AI Candidate Report</title>
+<style>
+body {font:16px/1.5 'Segoe UI', Georgia, serif;max-width:860px;margin:40px auto;color:#17212b;padding:0 20px}
+h1 {border-bottom:3px solid #007c7a;padding-bottom:12px;color:#004d40}
+h2 {color:#007c7a;margin-top:28px;border-bottom:1px solid #d3d0c8;padding-bottom:6px}
+table {border-collapse:collapse;width:100%;margin:16px 0}
+td,th {padding:10px 14px;border-bottom:1px solid #e0ded9;text-align:left}
+th {background:#f6f4ef;font-weight:600}
+.badge {display:inline-block;padding:4px 10px;border-radius:4px;color:#fff;font-weight:700;font-size:13px;background:#007c7a}
+.notice {background:#f2f0ea;border-left:4px solid #007c7a;padding:14px;margin-top:24px;font-size:14px}
+.metric-grid {display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;margin:18px 0}
+.metric-card {background:#fcfbf9;border:1px solid #d3d0c8;padding:12px 16px;border-radius:6px}
+.metric-title {font-size:11px;font-weight:700;color:#647078;text-transform:uppercase}
+.metric-value {font-size:20px;font-weight:700;color:#17212b;margin-top:4px}
+.metric-unc {font-size:12px;color:#647078;margin-top:2px}
+</style>
+</head><body>
+<h1>AstroMap-AI Candidate Identification Report</h1>
+<p><strong>Target:</strong> TIC 261136679 &nbsp;|&nbsp; <strong>Disposition:</strong> <span class="badge">PLANET_CANDIDATE</span></p>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="metric-title">Hybrid Confidence</div>
+    <div class="metric-value">42.8%</div>
+    <div class="metric-unc">± 7.5% (1σ MC)</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Orbital Period</div>
+    <div class="metric-value">6.5188 d</div>
+    <div class="metric-unc">± 0.0855 d</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-title">Transit Depth</div>
+    <div class="metric-value">126190.4 ppm</div>
+    <div class="metric-unc">± 3304.5 ppm</div>
+  </div>
+</div>
+
+<h2>1. Hybrid Identification &amp; Consensus</h2>
+<table>
+<tr><th>Parameter / Metric</th><th>Estimated Value (with 1σ uncertainty)</th><th>Interpretation</th></tr>
+<tr><td>Detection Method</td><td><strong>Physics-Informed Hybrid Consensus (PINN-TransNet + BLS)</strong></td><td>Multi-modal consensus engine</td></tr>
+<tr><td>Classification</td><td><strong>UNLIKELY</strong></td><td>P(planet) threshold &ge; 0.50 + Vetting pass</td></tr>
+<tr><td>Unified Confidence</td><td><strong>42.8% ± 7.5%</strong></td><td>Grounded in photometric scatter</td></tr>
+<tr><td>PINN-TransNet Deep AI Score</td><td>60.0%</td><td>2D Wavelet Scalogram + Temporal Attention</td></tr>
+<tr><td>Classical BLS Periodogram Score</td><td>24.8%</td><td>Box Least Squares SNR detection power</td></tr>
+<tr><td>Harmonic Consistency</td><td>11.1%</td><td>AI period vs BLS Fourier harmonic resonance</td></tr>
+<tr><td>Orbital Period</td><td><strong>6.5188 ± 0.0855 d</strong></td><td>Keplerian frequency estimate</td></tr>
+<tr><td>Transit Depth (δ)</td><td><strong>126190.4 ± 3304.5 ppm</strong></td><td>Planet-to-star area ratio (R_p / R_*)^2</td></tr>
+<tr><td>Transit Duration</td><td><strong>2.43 ± 0.06 h</strong></td><td>Full transit chord width</td></tr>
+<tr><td>Inference Model Version</td><td>pinn-transnet-v1</td><td>PINN-TransNet Weights</td></tr>
+</table>
+
+<h2>2. Astrophysical Vetting Battery (Robovetter)</h2>
+<table>
+<tr><th>Vetting Test</th><th>Status</th><th>Astrophysical Diagnostic Criterion</th></tr>
+<tr><td>Odd-Even Transit Parity</td><td><strong>PASS</strong></td><td>Depth difference &lt; 3.5&sigma; (rules out eclipsing binaries)</td></tr>
+<tr><td>Secondary Eclipse Scan</td><td><strong>PASS</strong></td><td>Occultation at phase &phi; &approx; 0.5 &lt; 2.5&sigma; (rules out self-luminous stars)</td></tr>
+<tr><td>Stellar Density Consistency</td><td><strong>PASS</strong></td><td>Kepler-3 &rho;<sub>*,transit</sub> consistent with Gaia DR3 stellar radius/mass</td></tr>
+<tr><td>Final Vetting Disposition</td><td><span class="badge">PLANET_CANDIDATE</span></td><td>Multi-test astrophysical synthesis</td></tr>
+</table>
+<ul><li>Target passes all astrophysical false-positive screening tests.</li></ul>
+
+<h2>3. Observation Provenance</h2>
+<table>
+<tr><th>Attribute</th><th>Value</th></tr>
+<tr><td>Space Mission</td><td>TESS/SPOC</td></tr>
+<tr><td>Sector / Baseline</td><td>Sector 1</td></tr>
+<tr><td>Cadences Analyzed</td><td>18264 photometric observations</td></tr>
+<tr><td>NASA MAST Product</td><td><code>mast:TESS/product/tess2018206045859-s0001-0000000261136679-0120-s_lc.fits</code></td></tr>
+</table>
+
+<p class="notice">
+  <strong>Scientific Screening Disclaimer:</strong> Research screening output only. This report does not confirm an exoplanet. This automated assessment was synthesized by AstroMap-AI utilizing Physics-Informed Neural Network (PINN-TransNet) inference, analytic Mandel-Agol (2002) transit constraints, and Box-Least-Squares Fourier screening. Follow-up radial velocity (RV) and high-resolution speckle imaging are recommended for definitive planetary confirmation.
+</p>
+</body></html>

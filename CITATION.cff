@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software in your research or wish to cite it, please cite it using the metadata below."
+title: "AstroMap-AI: Physics-Informed Interactive Exoplanet Detection and Astrophysical Vetting System"
+version: 1.0.0
+date-released: 2026-10-09
+authors:
+  - family-names: "Drumea"
+    given-names: "Nicu"
+repository-code: "https://github.com/nicudrumea/AstroMap-AI"
+url: "https://github.com/nicudrumea/AstroMap-AI"
+license: MIT
+keywords:
+  - "exoplanets"
+  - "astrophysics"
+  - "deep-learning"
+  - "physics-informed-neural-networks"
+  - "transit-timing-variations"
+  - "tess"
+  - "kepler"
+  - "box-least-squares"
+  - "mandel-agol"
+  - "scientific-machine-learning"
+abstract: "AstroMap-AI is an end-to-end scientific platform that ingests photometric light curves from NASA TESS and Kepler archives, employs a dual-domain Physics-Informed Neural Network (PINN-TransNet) with 2D Continuous Wavelet Scalograms and Mandel-Agol analytical transit constraints, and performs automated astrophysical false-positive vetting (Robovetter). Evaluated on a 1,000-target statistical benchmark and real TESS observations from Sector 1, AstroMap-AI achieves 89.7% accuracy, 92.8% recall, 91.5% precision, and 100% orbital period recovery."

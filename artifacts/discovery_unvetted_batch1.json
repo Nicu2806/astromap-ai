@@ -1,0 +1,44 @@
+{
+  "total_scanned": 8,
+  "candidates_count": 4,
+  "false_positives_count": 2,
+  "unlikely_count": 2,
+  "top_candidates": [
+    {
+      "tic_id": 306573321,
+      "probability": 0.5854,
+      "period_days": 6.7348,
+      "depth_ppm": 126538.1,
+      "duration_hours": 2.31,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 200668668,
+      "probability": 0.5779,
+      "period_days": 6.7291,
+      "depth_ppm": 122447.1,
+      "duration_hours": 2.35,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 394104363,
+      "probability": 0.5582,
+      "period_days": 6.6528,
+      "depth_ppm": 129464.2,
+      "duration_hours": 2.35,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 115014847,
+      "probability": 0.5294,
+      "period_days": 11.8614,
+      "depth_ppm": 65074.9,
+      "duration_hours": 2.46,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    }
+  ]
+}

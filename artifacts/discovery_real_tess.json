@@ -1,0 +1,17 @@
+{
+  "total_scanned": 6,
+  "candidates_count": 1,
+  "false_positives_count": 1,
+  "unlikely_count": 4,
+  "top_candidates": [
+    {
+      "tic_id": 267263253,
+      "probability": 0.6146,
+      "period_days": 6.861,
+      "depth_ppm": 124249.9,
+      "duration_hours": 2.23,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    }
+  ]
+}

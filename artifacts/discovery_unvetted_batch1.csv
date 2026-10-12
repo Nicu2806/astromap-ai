@@ -1,0 +1,9 @@
+tic_id,label,hybrid_confidence,period_days,depth_ppm,duration_hours,vetting_disposition,odd_even_flag,secondary_eclipse_flag,stellar_density_flag,mission,sector
+265591866,false_positive,0.7243,5.6802,178216.3,3.44,ECLIPSING_BINARY_ODD_EVEN,False,True,True,TESS/SPOC,1
+306573321,candidate,0.5854,6.7348,126538.1,2.31,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1
+200668668,candidate,0.5779,6.7291,122447.1,2.35,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1
+349485031,false_positive,0.5608,6.4366,133959.1,2.56,ECLIPSING_BINARY_ODD_EVEN,False,True,True,TESS/SPOC,1
+394104363,candidate,0.5582,6.6528,129464.2,2.35,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1
+115014847,candidate,0.5294,11.8614,65074.9,2.46,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1
+294053492,unlikely,0.3971,6.6274,125381.4,2.37,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1
+88328317,unlikely,0.3466,5.9739,134370.4,2.86,PLANET_CANDIDATE,True,True,True,TESS/SPOC,1

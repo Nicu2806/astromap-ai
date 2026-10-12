@@ -1,0 +1,43 @@
+services:
+  inference:
+    build:
+      context: ../..
+      dockerfile: infra/docker/python.Dockerfile
+    restart: unless-stopped
+    environment:
+      ASTROMAP_CHECKPOINT: ${ASTROMAP_CHECKPOINT:-}
+    ports:
+      - "8001:8001"
+    volumes:
+      - ../../artifacts:/app/artifacts:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../..
+      dockerfile: infra/docker/rust.Dockerfile
+    restart: unless-stopped
+    environment:
+      ASTROMAP_INFERENCE_URL: http://inference:8001
+      RUST_LOG: api_rust=info,tower_http=info
+    ports:
+      - "8080:8080"
+    depends_on:
+      inference:
+        condition: service_healthy
+
+  client:
+    build:
+      context: ../..
+      dockerfile: infra/docker/flutter.Dockerfile
+      args:
+        ASTROMAP_API_URL: http://localhost:8080
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    depends_on:
+      - api

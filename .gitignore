@@ -1,0 +1,32 @@
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Rust
+target/
+apps/api-rust/target/
+
+# Flutter
+.dart_tool/
+apps/client-flutter/.dart_tool/
+apps/client-flutter/build/
+apps/client-flutter/.flutter-plugins*
+apps/client-flutter/.flutter-plugins-dependencies
+
+# Heavy raw astronomical files
+data/raw/
+*.fits
+
+# Local configuration & IDE
+.env
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

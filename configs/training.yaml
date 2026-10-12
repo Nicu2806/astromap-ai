@@ -1,0 +1,32 @@
+experiment:
+  name: pinn-transnet-tess-v1
+  seed: 42
+  deterministic: true
+
+data:
+  mission: TESS
+  cadence: SPOC
+  output_points: 512
+  cwt_scales: 32
+  split:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+    group_by: tic_id
+
+model:
+  temporal_channels: [24, 48]
+  wavelet_channels: [16, 24]
+  fusion_features: 128
+
+loss:
+  regression_weight: 0.2
+  physics_weight: 0.05
+
+training:
+  learning_rate: 0.0003
+  optimizer: AdamW
+  batch_size: 64
+  epochs: 50
+  early_stopping_metric: validation_pr_auc
+  mixed_precision: true
