@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroMap-AI Diagnostic Report - TIC 52368076</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-light: #ccfbf1;
+      --accent: #e11d48;
+      --dark: #0f172a;
+      --card-bg: #f8fafc;
+      --border: #e2e8f0;
+      --text-muted: #64748b;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: #f1f5f9;
+      margin: 0;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-candidate { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .badge-fp { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .badge-quiet { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .badge-mission { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    h1 { margin: 0 0 6px 0; color: #042f2e; font-size: 26px; }
+    .subtitle { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .card-title { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+    .card-val { font-size: 22px; font-weight: 800; color: var(--dark); margin: 6px 0 2px 0; }
+    .card-unc { font-size: 12px; color: var(--text-muted); }
+    h2 {
+      font-size: 18px;
+      color: #042f2e;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    th, td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    th { background: #f8fafc; color: #334155; font-weight: 600; }
+    .pass { color: #16a34a; font-weight: 700; }
+    .fail { color: #dc2626; font-weight: 700; }
+    .plot-box {
+      background: #fafaf9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      font-size: 13px;
+      margin-top: 8px;
+      color: var(--text-muted);
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .alert-banner-candidate {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: #166534;
+      margin-bottom: 24px;
+    }
+    .alert-banner-fp {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: #92400e;
+      margin-bottom: 24px;
+    }
+    .alert-banner-quiet {
+      background: #f8fafc;
+      border-left: 4px solid #94a3b8;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 24px;
+    }
+    .notice {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 28px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <span class="badge badge-mission">NASA TESS &bull; Sector 1</span>
+      <h1 style="margin-top:8px">Candidate Diagnostic Report: TIC 52368076</h1>
+      <p class="subtitle">TOI 125 / TIC 52368076 &bull; SPOC 2-Minute Cadence Photometry</p>
+    </div>
+    <div style="text-align:right">
+      <span class="badge badge-candidate">PLANET_CANDIDATE</span>
+      <p class="subtitle" style="margin-top:8px">Disposition: <strong>PLANET_CANDIDATE</strong></p>
+    </div>
+  </div>
+
+  <div class="alert-banner-candidate">
+    <strong>NASA Exoplanet Archive Verification (IPAC/Caltech):</strong> Target <strong>TOI 125 / TIC 52368076</strong> is an archive-indexed system with 3 candidate(s). AstroMap-AI autonomously verified the transit profile and Keplerian orbital consistency.
+  </div>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-title">Hybrid Confidence</div>
+      <div class="card-val" style="color:#0f766e">55.0%</div>
+      <div class="card-unc">&plusmn; 0.9% (1&sigma;)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Orbital Period</div>
+      <div class="card-val">4.6540 d</div>
+      <div class="card-unc">&plusmn; 0.5000 d</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Transit Depth</div>
+      <div class="card-val">1.20 ppt</div>
+      <div class="card-unc">(1200.0 ppm)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Transit Duration</div>
+      <div class="card-val">2.28 h</div>
+      <div class="card-unc">&plusmn; 5.02 h</div>
+    </div>
+  </div>
+
+  <h2>1. Phase-Folded Light Curve & Mandel-Agol Fit (TESS Sector 1)</h2>
+  <div class="plot-box">
+    <svg width="760" height="260" viewBox="0 0 760 260" style="max-width:100%;height:auto">
+  <line x1="60" y1="218" x2="725" y2="218" stroke="#cbd5e1" stroke-width="1.2" />
+  <line x1="60" y1="30" x2="60" y2="218" stroke="#cbd5e1" stroke-width="1.2" />
+  <text x="392.5" y="250" text-anchor="middle" font-size="12" fill="#64748b">Orbital Phase (&phi; &in; [-0.5, +0.5])</text>
+  <text x="20" y="124.0" text-anchor="middle" font-size="12" fill="#64748b" transform="rotate(-90 20 124.0)">Normalized Flux</text>
+  <line x1="60" y1="132.1" x2="725" y2="132.1" stroke="#94a3b8" stroke-dasharray="4" stroke-width="1.5" />
+  <line x1="392.5" y1="30" x2="392.5" y2="218" stroke="#e2e8f0" stroke-dasharray="2,2" stroke-width="1" />
+  <circle cx="68.9" cy="168.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="69.7" cy="112.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="79.8" cy="169.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="80.7" cy="64.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="90.0" cy="191.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="90.8" cy="171.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="100.1" cy="159.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="100.9" cy="141.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="111.0" cy="170.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="111.8" cy="35.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="121.2" cy="205.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="122.0" cy="126.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="131.3" cy="171.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="132.1" cy="122.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="142.2" cy="116.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="143.0" cy="120.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="152.3" cy="110.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="153.1" cy="167.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="162.5" cy="163.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="163.3" cy="160.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="173.4" cy="194.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="174.2" cy="135.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="183.5" cy="94.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="184.3" cy="66.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="193.6" cy="177.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="194.5" cy="201.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="204.6" cy="161.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="205.4" cy="180.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="214.7" cy="129.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="215.5" cy="113.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="224.8" cy="173.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="225.6" cy="120.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="235.8" cy="152.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="236.6" cy="118.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="245.9" cy="109.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="246.7" cy="104.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="256.0" cy="138.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="256.8" cy="40.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="267.0" cy="140.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="267.8" cy="185.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="277.1" cy="30.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="277.9" cy="80.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="287.2" cy="122.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="288.0" cy="172.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="298.1" cy="175.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="298.9" cy="182.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="308.3" cy="181.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="309.1" cy="122.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="318.4" cy="148.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="319.2" cy="124.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="329.3" cy="173.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="330.1" cy="177.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="339.4" cy="173.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="340.3" cy="121.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="349.6" cy="126.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="350.4" cy="185.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="360.5" cy="77.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="361.3" cy="44.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="370.6" cy="164.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="371.4" cy="160.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="380.8" cy="162.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="381.6" cy="142.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="391.7" cy="139.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="392.5" cy="218.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="401.8" cy="126.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="402.6" cy="159.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="411.9" cy="149.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="412.7" cy="115.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="422.9" cy="139.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="423.7" cy="211.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="433.0" cy="127.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="433.8" cy="165.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="443.1" cy="213.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="443.9" cy="146.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="454.1" cy="141.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="454.9" cy="116.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="464.2" cy="127.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="465.0" cy="93.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="474.3" cy="123.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="475.1" cy="94.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="484.4" cy="103.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="485.2" cy="141.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="495.4" cy="137.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="496.2" cy="128.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="505.5" cy="48.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="506.3" cy="133.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="515.6" cy="188.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="516.4" cy="139.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="526.6" cy="89.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="527.4" cy="115.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="536.7" cy="66.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="537.5" cy="117.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="546.8" cy="79.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="547.6" cy="187.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="557.7" cy="70.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="558.5" cy="150.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="567.9" cy="156.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="568.7" cy="92.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="578.0" cy="163.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="578.8" cy="169.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="588.9" cy="58.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="589.7" cy="86.5" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="599.0" cy="127.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="599.9" cy="148.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="609.2" cy="123.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="610.0" cy="108.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="620.1" cy="51.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="620.9" cy="118.1" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="630.2" cy="153.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="631.0" cy="128.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="640.4" cy="123.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="641.2" cy="135.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="651.3" cy="119.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="652.1" cy="112.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="661.4" cy="88.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="662.2" cy="165.9" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="671.5" cy="69.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="672.3" cy="103.4" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="682.5" cy="68.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="683.3" cy="148.7" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="692.6" cy="123.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="693.4" cy="162.2" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="702.7" cy="87.6" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="703.5" cy="177.0" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="713.7" cy="151.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="714.5" cy="125.8" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="723.8" cy="73.3" r="2.8" fill="#007c7a" opacity="0.65" /><circle cx="724.6" cy="155.6" r="2.8" fill="#007c7a" opacity="0.65" />
+  <path d="M60.0,132.1 L65.5,132.1 L71.1,132.1 L76.6,132.1 L82.2,132.1 L87.7,132.1 L93.2,132.1 L98.8,132.1 L104.3,132.1 L109.9,132.1 L115.4,132.1 L121.0,132.1 L126.5,132.1 L132.0,132.1 L137.6,132.1 L143.1,132.1 L148.7,132.1 L154.2,132.1 L159.8,132.1 L165.3,132.1 L170.8,132.1 L176.4,132.1 L181.9,132.1 L187.5,132.1 L193.0,132.1 L198.5,132.1 L204.1,132.1 L209.6,132.1 L215.2,132.1 L220.7,132.1 L226.2,132.1 L231.8,132.1 L237.3,132.1 L242.9,132.1 L248.4,132.1 L254.0,132.1 L259.5,132.1 L265.0,132.1 L270.6,132.1 L276.1,132.1 L281.7,132.1 L287.2,132.1 L292.8,132.1 L298.3,132.1 L303.8,132.1 L309.4,132.1 L314.9,132.1 L320.5,132.1 L326.0,132.1 L331.5,132.1 L337.1,132.1 L342.6,132.1 L348.2,132.1 L353.7,132.1 L359.2,132.1 L364.8,132.1 L370.3,132.1 L375.9,132.1 L381.4,132.1 L387.0,177.4 L392.5,186.4 L398.0,177.4 L403.6,132.1 L409.1,132.1 L414.7,132.1 L420.2,132.1 L425.8,132.1 L431.3,132.1 L436.8,132.1 L442.4,132.1 L447.9,132.1 L453.5,132.1 L459.0,132.1 L464.5,132.1 L470.1,132.1 L475.6,132.1 L481.2,132.1 L486.7,132.1 L492.2,132.1 L497.8,132.1 L503.3,132.1 L508.9,132.1 L514.4,132.1 L520.0,132.1 L525.5,132.1 L531.0,132.1 L536.6,132.1 L542.1,132.1 L547.7,132.1 L553.2,132.1 L558.8,132.1 L564.3,132.1 L569.8,132.1 L575.4,132.1 L580.9,132.1 L586.5,132.1 L592.0,132.1 L597.5,132.1 L603.1,132.1 L608.6,132.1 L614.2,132.1 L619.7,132.1 L625.2,132.1 L630.8,132.1 L636.3,132.1 L641.9,132.1 L647.4,132.1 L653.0,132.1 L658.5,132.1 L664.0,132.1 L669.6,132.1 L675.1,132.1 L680.7,132.1 L686.2,132.1 L691.8,132.1 L697.3,132.1 L702.8,132.1 L708.4,132.1 L713.9,132.1 L719.5,132.1 L725.0,132.1" fill="none" stroke="#e11d48" stroke-width="2.5" opacity="0.85" />
+</svg>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#007c7a"></span> TESS SPOC Observations (P = 4.6540 d)</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#e11d48"></span> Mandel-Agol Transit Model</div>
+      <div class="legend-item"><span style="border-bottom:2px dashed #94a3b8;width:16px;height:0px;display:inline-block"></span> Stellar Continuum (1.0)</div>
+    </div>
+  </div>
+
+  <h2>2. Host Star Astrophysics & Estimated Planetary Parameters</h2>
+  <table>
+    <tr><th>Parameter</th><th>Value</th><th>Astrophysical Description</th></tr>
+    <tr><td>Host Star Spectral Type</td><td><strong>K-dwarf</strong></td><td>Target stellar classification</td></tr>
+    <tr><td>TESS Magnitude (T_mag)</td><td><strong>11.02 mag</strong></td><td>Apparent brightness in TESS bandpass</td></tr>
+    <tr><td>Effective Temperature (T_eff)</td><td><strong>5230 K</strong></td><td>Stellar photosphere temperature</td></tr>
+    <tr><td>Stellar Radius (R_*)</td><td><strong>0.860 R<sub>&odot;</sub></strong></td><td>Photometric host radius</td></tr>
+    <tr><td>Stellar Mass (M_*)</td><td><strong>0.860 M<sub>&odot;</sub></strong></td><td>Estimated gravitational mass</td></tr>
+    <tr><td>Distance from Earth</td><td><strong>111.4 pc (363.3 ly)</strong></td><td>Geometric parallax distance</td></tr>
+    <tr><td>Estimated Planet Radius (R_p)</td><td><strong>0.29 R<sub>Jup</sub> (3.3 R<sub>&oplus;</sub>)</strong></td><td>Derived from depth &delta; = (R_p / R_*)^2</td></tr>
+  </table>
+
+  <h2>3. Neuro-Symbolic & Signal Decomposition Details</h2>
+  <table>
+    <tr><th>Analysis Channel</th><th>Value</th><th>Diagnostic Interpretation</th></tr>
+    <tr><td>PINN-TransNet v1 Score</td><td><strong>53.4%</strong></td><td>2D CWT Scalogram + Physics-Informed Temporal CNN</td></tr>
+    <tr><td>Classical BLS Score</td><td><strong>23.0%</strong></td><td>Astropy Box Least Squares periodogram SNR</td></tr>
+    <tr><td>Cross-Modal Harmonic Consistency</td><td><strong>0.093</strong></td><td>Resonance between AI and BLS candidate periods</td></tr>
+    <tr><td>Consensus Detection Method</td><td><code>hybrid_pinn_bls_consensus</code></td><td>Multi-modal neuro-symbolic arbitration</td></tr>
+    <tr><td>Total Analyzed Cadences</td><td>512</td><td>2-minute SPOC sampling baseline</td></tr>
+    <tr><td>Data Source Provenance</td><td><code>data/real_curves/tic_52368076_s1.npz</code></td><td>NASA MAST Archive product</td></tr>
+  </table>
+
+  <h2>4. Automated Robovetter Vetting Suite</h2>
+  <table>
+    <tr><th>Diagnostic Test</th><th>Result</th><th>Description</th></tr>
+    <tr><td>Odd-Even Transit Depth Parity</td><td><span class="pass">PASS</span></td><td>Excludes eclipsing binaries via consecutive transit parity test</td></tr>
+    <tr><td>Secondary Eclipse Absence (&phi; = 0.5)</td><td><span class="pass">PASS</span></td><td>Excludes occulting secondary stellar components at anti-phase</td></tr>
+    <tr><td>Keplerian Stellar Density Consistency</td><td><span class="pass">PASS</span></td><td>Verifies transit duration compatibility with Kepler's 3rd Law</td></tr>
+    <tr><td>Final Robovetter Disposition</td><td><strong>PLANET_CANDIDATE</strong></td><td>Automated vetting consensus classification</td></tr>
+  </table>
+
+  <h2>5. Open Science Provenance & TFOP Follow-Up Recommendation</h2>
+  <div class="notice">
+    <strong>Scientific Provenance:</strong> AstroMap-AI Platform &bull; Developed by Nicu Drumea (Technical University of Moldova, FCIM, <code>nicu.drumea@iis.utm.md</code>).<br>
+    Permanent Zenodo Archive: <a href="https://doi.org/10.5281/zenodo.23317448" target="_blank">10.5281/zenodo.23317448</a> &bull; Source Code: <a href="https://github.com/Nicu2806/astromap-ai" target="_blank">github.com/Nicu2806/astromap-ai</a>.<br>
+    <em>Research screening output produced by AstroMap-AI. This report does not confirm an exoplanet without spectroscopic confirmation.</em>
+  </div>
+</div>
+</body>
+</html>

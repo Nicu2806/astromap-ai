@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from functools import lru_cache
+from pathlib import Path
 
 from astromap.pipeline import LightCurve
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -104,3 +108,48 @@ def download_tess_lightcurve(tic_id: int, sector: int | None = None) -> RealObse
         cadence_count=len(curve.time),
         source_uri=source_uri,
     )
+
+def load_tess_observation(
+    tic_id: int,
+    sector: int | None = None,
+    cache_dir: str = "data/real_curves",
+) -> RealObservation:
+    """Load real TESS SPOC observation from local disk cache if available, or fetch from MAST."""
+    import numpy as np
+
+    cache_path = Path(cache_dir) / f"tic_{tic_id}_s{sector or 1}.npz"
+    if cache_path.exists():
+        data = np.load(cache_path)
+        time = np.asarray(data["time"], dtype=np.float64)
+        flux = np.asarray(data["flux"], dtype=np.float64)
+        curve = LightCurve(
+            time=time,
+            flux=flux,
+            flux_error=np.full(len(time), 0.001, dtype=np.float64),
+            quality=np.zeros(len(time), dtype=np.int64),
+        )
+        return RealObservation(
+            curve=curve,
+            mission="TESS/SPOC",
+            sector=sector or 1,
+            cadence_count=len(time),
+            source_uri=str(cache_path.as_posix()),
+        )
+
+    obs = download_tess_lightcurve(tic_id, sector=sector)
+    try:
+        Path(cache_dir).mkdir(parents=True, exist_ok=True)
+        from astromap.pipeline import preprocess
+
+        processed = preprocess(obs.curve)
+        np.savez_compressed(
+            cache_path,
+            time=processed.time,
+            flux=processed.flux,
+            mask=processed.mask,
+            scalogram=processed.scalogram,
+        )
+    except (OSError, RuntimeError, ValueError) as err:
+        logger.debug("Failed to cache preprocessed curve for TIC %d: %s", tic_id, err)
+    return obs
+

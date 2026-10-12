@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroMap-AI Exoplanet Mass Discovery Survey</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --dark: #0f172a;
+      --border: #e2e8f0;
+      --card-bg: #f8fafc;
+      --text-muted: #64748b;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: var(--dark);
+      background: #f1f5f9;
+      margin: 0;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 36px;
+      border: 1px solid var(--border);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0 0 6px 0; color: #042f2e; font-size: 24px; }
+    .subtitle { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .kpi-num { font-size: 28px; font-weight: 800; color: var(--dark); margin: 4px 0; }
+    .kpi-label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+    .filter-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-filter {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .btn-filter.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .search-input {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      width: 240px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    th { background: #f8fafc; color: #334155; font-weight: 600; }
+    tr:hover { background: #fafaf9; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+    .pill-cand { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .pill-fp { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .pill-quiet { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .btn-report {
+      display: inline-block;
+      background: #0f766e;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-report:hover { background: #115e59; }
+    .footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>AstroMap-AI Exoplanet Mass Discovery Survey</h1>
+      <p class="subtitle">High-Throughput Autonomous Screening across NASA TESS Light Curves</p>
+    </div>
+    <div>
+      <span class="pill pill-cand" style="font-size:13px;padding:6px 14px">PINN-TransNet v1 Active</span>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Stars Screened</div>
+      <div class="kpi-num">16</div>
+      <small style="color:var(--text-muted)">Sector 1 SPOC Data</small>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Exoplanet Candidates</div>
+      <div class="kpi-num" style="color:#0f766e">8</div>
+      <small style="color:#0f766e">Passed All Robovetter Vetting</small>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Eclipsing Binaries / FPs</div>
+      <div class="kpi-num" style="color:#b91c1c">3</div>
+      <small style="color:#b91c1c">Odd-Even / Secondary Rejection</small>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Control Quiet Stars</div>
+      <div class="kpi-num" style="color:#475569">5</div>
+      <small style="color:#475569">Baseline Photometric Noise</small>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="filter-btn-group">
+      <button class="btn-filter active" onclick="filterTable('all')">All Targets (16)</button>
+      <button class="btn-filter" onclick="filterTable('candidate')">Candidates (8)</button>
+      <button class="btn-filter" onclick="filterTable('false_positive')">Eclipsing Binaries (3)</button>
+      <button class="btn-filter" onclick="filterTable('control')">Control Stars (5)</button>
+    </div>
+    <div>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search TIC ID or star name..." onkeyup="searchTable()">
+    </div>
+  </div>
+
+  <div style="overflow-x:auto">
+    <table id="targetsTable">
+      <thead>
+        <tr>
+          <th>Target Star</th>
+          <th>Disposition</th>
+          <th>Confidence</th>
+          <th>Period</th>
+          <th>Depth</th>
+          <th>Duration</th>
+          <th>Robovetter Checks</th>
+          <th>Host Star</th>
+          <th>Diagnostic Dossier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-type="candidate">
+  <td><strong>TIC 307210830</strong><br><small style="color:#64748b">TOI 256 / TIC 307210830</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>68.6%</strong></td>
+  <td>2.7840 d</td>
+  <td>4200 ppm<br><small style="color:#64748b">(4.20 ppt)</small></td>
+  <td>2.69 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>K-dwarf<br><small style="color:#64748b">T = 11.45</small></td>
+  <td><a href="./TIC_307210830_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="false_positive">
+  <td><strong>TIC 349485031</strong><br><small style="color:#64748b">TIC 349485031</small></td>
+  <td><span class="pill pill-fp">ECLIPSING_BINARY</span></td>
+  <td><strong>65.0%</strong></td>
+  <td>2.1500 d</td>
+  <td>180000 ppm<br><small style="color:#64748b">(180.00 ppt)</small></td>
+  <td>6.00 h</td>
+  <td>OE: ✗ | SEC: ✓ | DEN: ✓</td>
+  <td>F-dwarf<br><small style="color:#64748b">T = 10.12</small></td>
+  <td><a href="./TIC_349485031_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="false_positive">
+  <td><strong>TIC 265591866</strong><br><small style="color:#64748b">TIC 265591866</small></td>
+  <td><span class="pill pill-fp">ECLIPSING_BINARY</span></td>
+  <td><strong>65.0%</strong></td>
+  <td>1.8500 d</td>
+  <td>150000 ppm<br><small style="color:#64748b">(150.00 ppt)</small></td>
+  <td>5.28 h</td>
+  <td>OE: ✗ | SEC: ✓ | DEN: ✓</td>
+  <td>G-dwarf<br><small style="color:#64748b">T = 10.65</small></td>
+  <td><a href="./TIC_265591866_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="false_positive">
+  <td><strong>TIC 219800809</strong><br><small style="color:#64748b">TIC 219800809</small></td>
+  <td><span class="pill pill-fp">ECLIPSING_BINARY</span></td>
+  <td><strong>65.0%</strong></td>
+  <td>2.1540 d</td>
+  <td>185000 ppm<br><small style="color:#64748b">(185.00 ppt)</small></td>
+  <td>7.68 h</td>
+  <td>OE: ✗ | SEC: ✓ | DEN: ✓</td>
+  <td>F-dwarf<br><small style="color:#64748b">T = 9.87</small></td>
+  <td><a href="./TIC_219800809_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 55525572</strong><br><small style="color:#64748b">TOI 216 / TIC 55525572</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>61.1%</strong></td>
+  <td>17.0900 d</td>
+  <td>8500 ppm<br><small style="color:#64748b">(8.50 ppt)</small></td>
+  <td>3.96 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>K-dwarf<br><small style="color:#64748b">T = 12.38</small></td>
+  <td><a href="./TIC_55525572_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 200668668</strong><br><small style="color:#64748b">TIC 200668668</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>6.7291 d</td>
+  <td>122400 ppm<br><small style="color:#64748b">(122.40 ppt)</small></td>
+  <td>2.35 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>K-dwarf (Orange Dwarf)<br><small style="color:#64748b">T = 10.53</small></td>
+  <td><a href="./TIC_200668668_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 306573321</strong><br><small style="color:#64748b">TIC 306573321</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>6.7300 d</td>
+  <td>3500 ppm<br><small style="color:#64748b">(3.50 ppt)</small></td>
+  <td>2.04 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>K-dwarf<br><small style="color:#64748b">T = 11.20</small></td>
+  <td><a href="./TIC_306573321_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 394104363</strong><br><small style="color:#64748b">TIC 394104363</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>6.6500 d</td>
+  <td>2800 ppm<br><small style="color:#64748b">(2.80 ppt)</small></td>
+  <td>2.21 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>G-dwarf (Solar Analog)<br><small style="color:#64748b">T = 10.85</small></td>
+  <td><a href="./TIC_394104363_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 115014847</strong><br><small style="color:#64748b">TIC 115014847</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>11.8600 d</td>
+  <td>4100 ppm<br><small style="color:#64748b">(4.10 ppt)</small></td>
+  <td>2.52 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>F-dwarf<br><small style="color:#64748b">T = 9.94</small></td>
+  <td><a href="./TIC_115014847_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 52368076</strong><br><small style="color:#64748b">TOI 125 / TIC 52368076</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>4.6540 d</td>
+  <td>1200 ppm<br><small style="color:#64748b">(1.20 ppt)</small></td>
+  <td>2.28 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>K-dwarf<br><small style="color:#64748b">T = 11.02</small></td>
+  <td><a href="./TIC_52368076_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="candidate">
+  <td><strong>TIC 150428135</strong><br><small style="color:#64748b">TOI 700 / TIC 150428135</small></td>
+  <td><span class="pill pill-cand">CANDIDATE</span></td>
+  <td><strong>55.0%</strong></td>
+  <td>37.4260 d</td>
+  <td>850 ppm<br><small style="color:#64748b">(0.85 ppt)</small></td>
+  <td>3.55 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✓</td>
+  <td>M-dwarf (Red Dwarf)<br><small style="color:#64748b">T = 13.15</small></td>
+  <td><a href="./TIC_150428135_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="control">
+  <td><strong>TIC 149603524</strong><br><small style="color:#64748b">TIC 149603524</small></td>
+  <td><span class="pill pill-quiet">CONTROL</span></td>
+  <td><strong>44.6%</strong></td>
+  <td>0.8090 d</td>
+  <td>643478 ppm<br><small style="color:#64748b">(643.48 ppt)</small></td>
+  <td>13.91 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✗</td>
+  <td>M-dwarf<br><small style="color:#64748b">T = 12.80</small></td>
+  <td><a href="./TIC_149603524_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="control">
+  <td><strong>TIC 410153553</strong><br><small style="color:#64748b">WASP-18 / TIC 410153553</small></td>
+  <td><span class="pill pill-quiet">CONTROL</span></td>
+  <td><strong>39.5%</strong></td>
+  <td>0.8144 d</td>
+  <td>646695 ppm<br><small style="color:#64748b">(646.70 ppt)</small></td>
+  <td>13.79 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✗</td>
+  <td>F-dwarf<br><small style="color:#64748b">T = 9.29</small></td>
+  <td><a href="./TIC_410153553_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="control">
+  <td><strong>TIC 261136679</strong><br><small style="color:#64748b">TIC 261136679</small></td>
+  <td><span class="pill pill-quiet">CONTROL</span></td>
+  <td><strong>35.0%</strong></td>
+  <td>0.8117 d</td>
+  <td>642218 ppm<br><small style="color:#64748b">(642.22 ppt)</small></td>
+  <td>13.90 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✗</td>
+  <td>G-dwarf (Solar Twin)<br><small style="color:#64748b">T = 10.42</small></td>
+  <td><a href="./TIC_261136679_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="control">
+  <td><strong>TIC 88328317</strong><br><small style="color:#64748b">TIC 88328317</small></td>
+  <td><span class="pill pill-quiet">CONTROL</span></td>
+  <td><strong>35.0%</strong></td>
+  <td>2.5521 d</td>
+  <td>321847 ppm<br><small style="color:#64748b">(321.85 ppt)</small></td>
+  <td>13.89 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✗</td>
+  <td>K-dwarf<br><small style="color:#64748b">T = 11.55</small></td>
+  <td><a href="./TIC_88328317_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+<tr data-type="control">
+  <td><strong>TIC 294053492</strong><br><small style="color:#64748b">TIC 294053492</small></td>
+  <td><span class="pill pill-quiet">CONTROL</span></td>
+  <td><strong>35.0%</strong></td>
+  <td>0.8080 d</td>
+  <td>645483 ppm<br><small style="color:#64748b">(645.48 ppt)</small></td>
+  <td>13.83 h</td>
+  <td>OE: ✓ | SEC: ✓ | DEN: ✗</td>
+  <td>G-dwarf<br><small style="color:#64748b">T = 11.08</small></td>
+  <td><a href="./TIC_294053492_discovery_report.html" class="btn-report" target="_blank">View Dossier &rarr;</a></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <div>
+      <strong>AstroMap-AI Platform</strong> &bull; Author: Nicu Drumea (UTM FCIM, <code>nicu.drumea@iis.utm.md</code>)<br>
+      Permanent Zenodo Archive: <a href="https://doi.org/10.5281/zenodo.23317448" target="_blank">10.5281/zenodo.23317448</a>
+    </div>
+    <div>
+      <a href="./discovery_catalog.csv" style="color:#0f766e;text-decoration:none;font-weight:600">Download CSV Catalog &darr;</a> &bull;
+      <a href="./discovery_catalog.json" style="color:#0f766e;text-decoration:none;font-weight:600">Download JSON &darr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function filterTable(type) {
+  document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  const rows = document.querySelectorAll('#targetsTable tbody tr');
+  rows.forEach(row => {
+    if (type === 'all' || row.getAttribute('data-type') === type) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+function searchTable() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const rows = document.querySelectorAll('#targetsTable tbody tr');
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(query) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

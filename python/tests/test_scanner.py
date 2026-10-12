@@ -41,3 +41,30 @@ def test_batch_scan_and_catalog_generation(tmp_path: Path) -> None:
     csv_text = csv_file.read_text(encoding="utf-8")
     assert "tic_id,label,hybrid_confidence" in csv_text
     assert "150428135" in csv_text
+
+
+def test_batch_scan_with_reports_dir(tmp_path: Path) -> None:
+    engine = InferenceEngine(observation_loader=fixture_loader)
+    tic_ids = [150428135, 261136679]
+    reports_dir = tmp_path / "discovery_reports"
+
+    predictions, _summary = scan_targets(
+        tic_ids=tic_ids,
+        engine=engine,
+        reports_dir=reports_dir,
+    )
+
+    assert len(predictions) == 2
+    assert (reports_dir / "TIC_150428135_discovery_report.html").exists()
+    assert (reports_dir / "TIC_261136679_discovery_report.html").exists()
+    assert (reports_dir / "index.html").exists()
+    assert (reports_dir / "discovery_catalog.csv").exists()
+    assert (reports_dir / "discovery_catalog.json").exists()
+
+    report_html = (reports_dir / "TIC_150428135_discovery_report.html").read_text(encoding="utf-8")
+    assert "TIC 150428135" in report_html
+    assert "Mandel-Agol" in report_html
+
+    dashboard_html = (reports_dir / "index.html").read_text(encoding="utf-8")
+    assert "AstroMap-AI Exoplanet Mass Discovery Survey" in dashboard_html
+    assert "TIC_150428135_discovery_report.html" in dashboard_html

@@ -73,9 +73,9 @@ astromap-ai/
 ```
 Open `http://localhost:8088` in your browser.
 
-### Running the Full Automated Test Suite (45/45 Green):
+### Running the Full Automated Test Suite (46/46 Green):
 ```powershell
-# Python unit & scientific tests (35 tests)
+# Python unit & scientific tests (36 tests)
 .\.venv\Scripts\python.exe -m pytest python/tests
 .\.venv\Scripts\python.exe -m ruff check python/src python/tests
 
@@ -85,6 +85,19 @@ cargo test --manifest-path apps/api-rust/Cargo.toml
 # Flutter client widget & API contract tests (2 tests)
 Push-Location apps/client-flutter ; flutter test ; Pop-Location
 ```
+
+### High-Throughput Mass Sky Scanner & Discovery Dossiers:
+Screen batches of TESS targets and generate standalone diagnostic dossiers and a master interactive survey dashboard:
+```powershell
+.\.venv\Scripts\python.exe -m astromap.cli scan `
+  --checkpoint artifacts/pinn-transnet-v1.pt `
+  --sector 1 `
+  --reports-dir artifacts/discovery_reports `
+  --tic-ids 200668668 306573321 394104363 115014847 307210830 55525572 52368076 150428135
+```
+- **Interactive Survey Dashboard:** [`artifacts/discovery_reports/index.html`](artifacts/discovery_reports/index.html)
+- **Flagship Discovery Dossier:** [`artifacts/discovery_reports/TIC_200668668_discovery_report.html`](artifacts/discovery_reports/TIC_200668668_discovery_report.html)
+- **Machine-Readable Survey Catalogs:** [`artifacts/discovery_reports/discovery_catalog.csv`](artifacts/discovery_reports/discovery_catalog.csv) & [`artifacts/discovery_reports/discovery_catalog.json`](artifacts/discovery_reports/discovery_catalog.json)
 
 ---
 

@@ -31,6 +31,7 @@ def main() -> None:
     scan_parser.add_argument("--sector", type=int, default=None, help="Target TESS sector to analyze")
     scan_parser.add_argument("--output-csv", type=Path, default=None, help="Destination CSV file")
     scan_parser.add_argument("--output-json", type=Path, default=None, help="Destination JSON file")
+    scan_parser.add_argument("--reports-dir", type=Path, default=None, help="Directory to save individual diagnostic reports and dashboard")
 
     # Subcommand: benchmark
     bench_parser = subparsers.add_parser("benchmark", help="Run multi-target statistical benchmark")
@@ -76,6 +77,7 @@ def main() -> None:
             min_score=args.min_score,
             output_csv=args.output_csv,
             output_json=args.output_json,
+            reports_dir=args.reports_dir,
         )
         print(json.dumps(summary.to_dict(), indent=2))
         return

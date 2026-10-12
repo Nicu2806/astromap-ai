@@ -40,6 +40,7 @@ def scan_targets(
     min_score: float = 0.50,
     output_csv: Path | None = None,
     output_json: Path | None = None,
+    reports_dir: Path | None = None,
     verbose: bool = True,
 ) -> tuple[list[Prediction], ScanSummary]:
     """Scan a list of TIC targets, evaluate hybrid detections and compile a discovery catalog.
@@ -60,6 +61,8 @@ def scan_targets(
         Destination CSV path.
     output_json : Path, optional
         Destination JSON summary path.
+    reports_dir : Path, optional
+        Directory where individual candidate HTML dossiers and master dashboard are generated.
     verbose : bool
         Whether to print progress indicators.
 
@@ -126,6 +129,23 @@ def scan_targets(
         unlikely_count=unlikely_count,
         top_candidates=top_candidates,
     )
+
+    if reports_dir is not None:
+        from astromap.reporting import generate_discovery_dashboard, generate_discovery_report
+
+        reports_path = Path(reports_dir)
+        reports_path.mkdir(parents=True, exist_ok=True)
+
+        for p in predictions:
+            report_file = reports_path / f"TIC_{p.tic_id}_discovery_report.html"
+            generate_discovery_report(p, report_file)
+
+        generate_discovery_dashboard(predictions, reports_path / "index.html")
+
+        if output_csv is None:
+            output_csv = reports_path / "discovery_catalog.csv"
+        if output_json is None:
+            output_json = reports_path / "discovery_catalog.json"
 
     if output_csv is not None:
         output_csv.parent.mkdir(parents=True, exist_ok=True)

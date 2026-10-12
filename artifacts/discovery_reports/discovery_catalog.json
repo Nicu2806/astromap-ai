@@ -1,0 +1,80 @@
+{
+  "total_scanned": 16,
+  "candidates_count": 8,
+  "false_positives_count": 3,
+  "unlikely_count": 5,
+  "top_candidates": [
+    {
+      "tic_id": 307210830,
+      "probability": 0.6864,
+      "period_days": 2.784,
+      "depth_ppm": 4200.0,
+      "duration_hours": 2.69,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 55525572,
+      "probability": 0.6113,
+      "period_days": 17.09,
+      "depth_ppm": 8500.0,
+      "duration_hours": 3.96,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 200668668,
+      "probability": 0.55,
+      "period_days": 6.7291,
+      "depth_ppm": 122400.0,
+      "duration_hours": 2.35,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 306573321,
+      "probability": 0.55,
+      "period_days": 6.73,
+      "depth_ppm": 3500.0,
+      "duration_hours": 2.04,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 394104363,
+      "probability": 0.55,
+      "period_days": 6.65,
+      "depth_ppm": 2800.0,
+      "duration_hours": 2.21,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 115014847,
+      "probability": 0.55,
+      "period_days": 11.86,
+      "depth_ppm": 4100.0,
+      "duration_hours": 2.52,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 52368076,
+      "probability": 0.55,
+      "period_days": 4.654,
+      "depth_ppm": 1200.0,
+      "duration_hours": 2.28,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    },
+    {
+      "tic_id": 150428135,
+      "probability": 0.55,
+      "period_days": 37.426,
+      "depth_ppm": 850.0,
+      "duration_hours": 3.55,
+      "vetting_disposition": "PLANET_CANDIDATE",
+      "label": "candidate"
+    }
+  ]
+}

@@ -17,9 +17,16 @@ apps/client-flutter/.flutter-plugins*
 # Scientific data and artifacts
 data/raw/
 data/processed/
-artifacts/
+artifacts/*
+!artifacts/discovery_reports/
+!artifacts/discovery_reports/**
+!artifacts/pinn-transnet-v1.pt
+!artifacts/tic-200668668-candidate-report.html
+!artifacts/candidate_*.json
+!artifacts/discovery_*.csv
+!artifacts/discovery_*.json
+!artifacts/model_card.json
 *.fits
-*.pt
 *.npz
 *.parquet
 
