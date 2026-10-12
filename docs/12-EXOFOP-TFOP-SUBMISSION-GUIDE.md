@@ -140,7 +140,7 @@ We would like to request:
 2. TFOP SG2 Reconnaissance spectroscopy to place initial constraints on the radial velocity amplitude and confirm whether the transiting object is an inflated gas giant or a low-mass brown dwarf.
 
 All detection code, calibrated models, and photometric datasets are openly accessible at:
-https://github.com/nicudrumea/astromap-ai
+https://github.com/Nicu2806/astromap-ai
 
 Thank you very much for your time and guidance. I look forward to potential collaboration with the TFOP team.
 

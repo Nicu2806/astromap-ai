@@ -6,8 +6,8 @@ date-released: 2026-10-09
 authors:
   - family-names: "Drumea"
     given-names: "Nicu"
-repository-code: "https://github.com/nicudrumea/AstroMap-AI"
-url: "https://github.com/nicudrumea/AstroMap-AI"
+repository-code: "https://github.com/Nicu2806/astromap-ai"
+url: "https://github.com/Nicu2806/astromap-ai"
 license: MIT
 keywords:
   - "exoplanets"

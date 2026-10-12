@@ -4,7 +4,7 @@
 **Affiliation:** Faculty of Computer Science & Engineering / Computational Astrophysics  
 **Target Journals:** *The Astrophysical Journal (ApJ)* / *Monthly Notices of the Royal Astronomical Society (MNRAS)* / *The Astronomical Journal (AJ)*  
 **Preprint Archive:** *arXiv:astro-ph.EP / Zenodo (DOI: 10.5281/zenodo.1000000)*  
-**Software Repository:** [https://github.com/nicudrumea/AstroMap-AI](https://github.com/nicudrumea/AstroMap-AI)  
+**Software Repository:** [https://github.com/Nicu2806/astromap-ai](https://github.com/Nicu2806/astromap-ai)  
 **Date:** October 2026  
 
 ---
@@ -217,7 +217,7 @@ In this work, we presented AstroMap-AI, a physics-informed exoplanet detection f
 
 ### Data & Code Availability
 The AstroMap-AI framework is released as open-source software under the MIT License. Source code, PyTorch checkpoints, Rust API gateway, Flutter client, and benchmark datasets are preserved on GitHub and archived with a persistent DOI via Zenodo:
-* **GitHub:** [https://github.com/nicudrumea/AstroMap-AI](https://github.com/nicudrumea/AstroMap-AI)
+* **GitHub:** [https://github.com/Nicu2806/astromap-ai](https://github.com/Nicu2806/astromap-ai)
 * **Citation Metadata:** [`CITATION.cff`](../CITATION.cff)
 * **Candidate Dossier:** [`artifacts/tic-200668668-candidate-report.html`](../artifacts/tic-200668668-candidate-report.html)
 
