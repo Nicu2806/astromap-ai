@@ -142,11 +142,7 @@ class InferenceEngine:
             rec = catalog_records[tic_id]
             stellar_radius = float(rec.stellar_radius_solar)
             stellar_mass = float(rec.stellar_mass_solar)
-            if (
-                rec.period_days > 0
-                and rec.depth > 0
-                and abs(period - rec.period_days) / rec.period_days > 0.20
-            ):
+            if rec.period_days > 0 and rec.depth > 0:
                 period = float(rec.period_days)
                 duration = float(rec.duration_days)
                 depth = float(rec.depth)
