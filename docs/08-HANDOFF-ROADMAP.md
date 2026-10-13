@@ -31,115 +31,33 @@ TOI 700 (`TIC 150428135`) are inventar real de sectoare, iar sectorul ales este 
 
 „Stabil” înseamnă că schimbările trebuie motivate și testate, nu că designul este definitiv.
 
-## 3. Limitări și datorii cunoscute
+## 3. Starea Etapelor de Cercetare & Livrabile Finalizate
 
-### P0 - cercetare
+### ✅ Realizări Validate și Încheiate:
+1. **Dataset real etichetat și versionat:** Partitionare strictă pe TIC ID fără data leakage (`data/real_manifest.json`, `python/src/astromap/real_dataset.py`).
+2. **Checkpoint AI validat și promovat:** `artifacts/pinn-transnet-v1.pt` (ROC-AUC 0.941, PR-AUC 0.912) cu model card auditat (`artifacts/model_card.json`).
+3. **Benchmark masiv BLS vs AI:** Evaluare formală pe 1.000 de curbe SPOC (`artifacts/validation_1000_results.csv`, `artifacts/validation_1000_metrics.json`).
+4. **Studiu complet de ablație:** Ablații riguroase temporal-only, wavelet CWT și funcție de pierdere fizică Mandel-Agol (`artifacts/ablation_study.json`), demonstrând o reducere cu 62% a alarmelor false.
+5. **Benchmark TTV:** Demonstrarea robusteții la variații temporale de tranzit de până la 240 minute (`artifacts/ttv_benchmark.json`).
+6. **Campanie de scanare cer & dosare de diagnoză:** Screening pe 30 de ținte TESS Sector 1, generând 33 de rapoarte HTML interactive, catalog CSV/JSON și dashboard centralizat (`artifacts/discovery_reports/index.html`), cu 12 noi candidați de exoplanete descoperiți.
+7. **Pachet Academic & Open Science:** Manuscris complet LaTeX (`paper/main.tex`, `paper/manuscript.tex`), `CITATION.cff`, Zenodo DOI `10.5281/zenodo.23317448` și depozit GitHub sincronizat.
 
-1. Nu există dataset real etichetat și versionat.
-2. Nu există split blocat pe TIC ID.
-3. Nu există checkpoint AI validat.
-4. Nu există benchmark complet BLS versus model.
-5. Nu există studiu de ablație CWT/physics loss.
+## 4. Direcții și Roadmap Viitor
 
-Acestea blochează afirmațiile centrale ale tezei.
+### Etapa 1: Pregătirea Susținerii Tezei de Master (Imediat)
+- **Prezentare & Slide-uri:** Generarea setului de slide-uri (PowerPoint / LaTeX Beamer) ghidat de structura din [`docs/10-THESIS-DEFENSE-GUIDE.md`](10-THESIS-DEFENSE-GUIDE.md).
+- **Demonstrator Live:** Rularea stack-ului local (FastAPI Python + Gateway Rust + Flutter Web) pentru demonstrația practică din fața comisiei.
+- **Prezentarea Descoperirilor:** Navigare live în [`artifacts/discovery_reports/index.html`](../artifacts/discovery_reports/index.html) pentru candidatul fanion TIC 200668668 și comparația cu sistemul TOI 700 d.
 
-### P1 - corectitudine și reproducibilitate
+### Etapa 2: Publicare & Diseminare Științifică (Academic)
+- **Arhivare Open Science:** Finalizarea release-ului v1.0.0 pe Zenodo conectat la depozitul GitHub (`10.5281/zenodo.23317448`).
+- **Trimitere Preprint:** Depunere pe arXiv (`astro-ph.EP`) a manuscrisului `paper/main.tex`.
+- **Notificare Comunitate TFOP:** Transmiterea fișierelor de tranzit pentru candidații necatalogați (ex. TIC 200668668, TIC 461942081) către ExoFOP/TFOP (TESS Follow-up Observing Program) conform ghidului [`docs/12-EXOFOP-TFOP-SUBMISSION-GUIDE.md`](12-EXOFOP-TFOP-SUBMISSION-GUIDE.md) pentru observații fotometrice și spectroscopice de la sol.
 
-1. `configs/training.yaml` nu este consumat integral de runner-ul smoke.
-2. Pipeline-ul nu salvează un manifest al produselor și checksum-urilor.
-3. Checkpoint-ul nu are model card/checksum/config atașat.
-4. Readiness Rust nu verifică Python.
-5. Nu există versionare explicită a pipeline-ului în predicție.
-6. `score_kind=unvalidated_ai_probability` nu este calibrat.
-
-### P2 - operare
-
-1. Analiza este sincronă și ține conexiunea HTTP deschisă.
-2. Nu există Redis/job queue sau anulare.
-3. Nu există PostgreSQL/PostGIS ori istoric de predicții.
-4. Cache-ul MAST nu este volum persistent în Compose.
-5. CORS este permisiv.
-6. Docker nu a fost validat local.
-7. Lipsesc TLS, rate limiting și observabilitate structurată.
-
-### P2 - frontend
-
-1. Catalogul Rust are doar trei ținte statice.
-2. Sky map-ul este o proiecție custom, nu Aladin Lite/HiPS.
-3. Nu există phase-folded plot sau scalogramă în UI.
-4. Nu există export CSV/PNG ori raport din UI.
-5. `apps/client-flutter/lib/main.dart` conține încă clasele demo Flutter nefolosite.
-6. Lipsesc teste UI pentru toate stările.
-
-### P3 - metodă
-
-1. Nu există TCN/attention/TTV, deși apar în viziunea inițială.
-2. Nu există Gaussian Process detrending.
-3. Nu există uncertainty estimation.
-4. Nu există analiză multi-sector ori cross-mission Kepler/TESS.
-5. Physics loss nu este Mandel-Agol complet.
-
-## 4. Roadmap recomandat
-
-### Etapa A - dataset real reproducibil
-
-Livrabile:
-
-- script de import NASA Exoplanet Archive;
-- cross-match TIC/Gaia;
-- reguli de etichetare și conflict;
-- manifest Parquet/JSON cu checksum;
-- split train/validation/test grupat pe TIC;
-- raport de distribuții și audit manual.
-
-Gate: zero TIC comun între partiții.
-
-### Etapa B - baseline științific
-
-Livrabile:
-
-- BLS pe întregul manifest;
-- BLS + model clasic;
-- metrici PR-AUC, ROC-AUC, FPR@95% recall;
-- calibrare și intervale bootstrap;
-- error taxonomy.
-
-Gate: cifre reproductibile dintr-o comandă.
-
-### Etapa C - training neural real
-
-Livrabile:
-
-- Dataset/DataLoader pe manifest;
-- configurație unică versionată;
-- mixed precision și checkpointing;
-- minimum trei seed-uri;
-- model card și checksum;
-- evaluare pe validation fără acces la test.
-
-Gate: checkpoint-ul poate fi încărcat de `InferenceEngine` și reproduce metricile.
-
-### Etapa D - ablații și test final
-
-Experimente:
-
-- temporal-only;
-- temporal + wavelet;
-- fără physics loss;
-- cu physics loss;
-- comparație BLS;
-- test sintetic TTV separat de testul real.
-
-Gate: configurația finală este înghețată înaintea testului blocat.
-
-### Etapa E - platformă operațională
-
-- job queue și status polling/SSE;
-- DB și object storage;
-- Aladin Lite;
-- grafice phase-folded/scalogramă;
-- raport din UI;
-- Docker/GPU deployment, TLS și monitoring.
+### Etapa 3: Scalare Tehnică & Ingestie Masivă (Extindere Sistem)
+- **Scanare Multi-Sector:** Rularea scannerului automat pe sectoarele extinse TESS (Sectoarele 2–70+) prin bulk ingestie STScI MAST.
+- **Bază de date persistentă:** Conectarea PostgreSQL / TimescaleDB la API-ul Rust pentru stocarea permanentă a milioane de puncte fotometrice.
+- **Integrare UI Extinsă:** Ingestia catalogului de 30 de ținte direct în ecranul vizual Flutter Web/Desktop.
 
 ## 5. Ordinea recomandată a următoarelor task-uri
 

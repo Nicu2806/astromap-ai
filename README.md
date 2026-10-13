@@ -87,16 +87,16 @@ Push-Location apps/client-flutter ; flutter test ; Pop-Location
 ```
 
 ### High-Throughput Mass Sky Scanner & Discovery Dossiers:
-Screen large batches of TESS targets and generate standalone diagnostic dossiers and a master interactive survey dashboard:
+Screen batches of TESS targets and generate standalone diagnostic dossiers and a master interactive survey dashboard:
 ```powershell
 .\.venv\Scripts\python.exe -m astromap.cli scan `
   --checkpoint artifacts/pinn-transnet-v1.pt `
   --sector 1 `
   --reports-dir artifacts/discovery_reports `
-  --tic-ids 150428135 52368076 55525572 307210830 410153553 25155310 231663901 260304296 38846515 200668668 306573321 394104363 115014847 461942081 471012933 481230491 492341202 501249019 512398412 523490123 534591024 349485031 265591866 219800809 545692035 556793046 261136679 88328317 294053492 149603524
+  --tic-ids 200668668 306573321 394104363 115014847 307210830 55525572 52368076 150428135
 ```
-- **Interactive Survey Dashboard:** [`artifacts/discovery_reports/index.html`](artifacts/discovery_reports/index.html) (Live filtering, search, and metrics across all 30 screened targets)
-- **Flagship Discovery Dossiers:** Dedicated HTML reports with SVG phase-folded light curves, Mandel-Agol analytical model fit overlays, and Robovetter diagnostics (e.g. [`TIC_200668668_discovery_report.html`](artifacts/discovery_reports/TIC_200668668_discovery_report.html), [`TIC_461942081_discovery_report.html`](artifacts/discovery_reports/TIC_461942081_discovery_report.html), [`TIC_481230491_discovery_report.html`](artifacts/discovery_reports/TIC_481230491_discovery_report.html))
+- **Interactive Survey Dashboard:** [`artifacts/discovery_reports/index.html`](artifacts/discovery_reports/index.html)
+- **Flagship Discovery Dossier:** [`artifacts/discovery_reports/TIC_200668668_discovery_report.html`](artifacts/discovery_reports/TIC_200668668_discovery_report.html)
 - **Machine-Readable Survey Catalogs:** [`artifacts/discovery_reports/discovery_catalog.csv`](artifacts/discovery_reports/discovery_catalog.csv) & [`artifacts/discovery_reports/discovery_catalog.json`](artifacts/discovery_reports/discovery_catalog.json)
 
 ---
